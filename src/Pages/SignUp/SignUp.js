@@ -1,7 +1,37 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Contexts/AuthContext/AuthProvider";
 
 const SignUp = () => {
+  const { createUser, updateUserProfile } = useContext(AuthContext);
+
+  const handleSignUp = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const name = form.username.value;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    createUser(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        form.reset();
+        handleUpdateUser(name);
+      })
+      .catch((err) => console.error(err));
+  };
+
+  const handleUpdateUser = (name) => {
+    const profile = {
+      displayName: name,
+    };
+
+    updateUserProfile(profile)
+      .then(() => {})
+      .catch((err) => console.error(err));
+  };
+
   return (
     <div className="hero">
       <div className="hero-content flex-col lg:flex-row">
@@ -13,8 +43,8 @@ const SignUp = () => {
           </p>
         </div>
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-          <div className="card-body">
-            <h1 className="text-5xl font-bold text-center">Login now!</h1>
+          <form onSubmit={handleSignUp} className="card-body">
+            <h1 className="text-5xl font-bold text-center">Register!</h1>
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Username</span>
@@ -57,7 +87,7 @@ const SignUp = () => {
               <input
                 type="submit"
                 className="btn btn-primary"
-                value="Login"
+                value="Sign Up"
               ></input>
             </div>
             <div className="text-center">
@@ -67,7 +97,7 @@ const SignUp = () => {
                 Login
               </Link>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>

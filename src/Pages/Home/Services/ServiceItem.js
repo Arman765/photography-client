@@ -2,7 +2,7 @@ import React from "react";
 
 const ServiceItem = ({ service }) => {
   const { _id, service_id, title, img, price, description } = service;
-  console.log(service);
+
   return (
     <div className="card card-compact w-96 bg-base-100 shadow-xl">
       <figure>

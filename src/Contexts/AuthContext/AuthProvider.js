@@ -13,7 +13,7 @@ import { app } from "../../firebase/firebase.config";
 export const AuthContext = createContext();
 const auth = getAuth(app);
 
-const AuthProvider = () => {
+const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
   const createUser = (email, password) => {
@@ -22,6 +22,14 @@ const AuthProvider = () => {
 
   const login = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password);
+  };
+
+  const googleSignIn = (provider) => {
+    return signInWithPopup(auth, provider);
+  };
+
+  const updateUserProfile = (profile) => {
+    return updateProfile(auth.currentUser, profile);
   };
 
   useEffect(() => {
@@ -35,10 +43,10 @@ const AuthProvider = () => {
     };
   }, []);
 
-  const authInfo = { user, createUser, login };
+  const authInfo = { user, createUser, login, updateUserProfile, googleSignIn };
   return (
     <div>
-      <AuthContext.Provider value={authInfo}></AuthContext.Provider>
+      <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
     </div>
   );
 };
