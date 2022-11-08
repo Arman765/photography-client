@@ -1,14 +1,31 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../Contexts/AuthContext/AuthProvider";
 
 const Header = () => {
+  const { user, logOut } = useContext(AuthContext);
+  console.log(user);
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => console.error(error));
+  };
+
   const menus = (
     <>
       <li>
         <Link to="/">Home</Link>
-
-        <Link to="/login">Login</Link>
         <Link to="/">Blog</Link>
+        {user ? (
+          <Link onClick={handleLogOut} className=" btn-outline btn-success">
+            Log Out
+          </Link>
+        ) : (
+          <Link className=" btn-outline btn-success" to="/login">
+            Login
+          </Link>
+        )}
       </li>
     </>
   );
@@ -47,10 +64,8 @@ const Header = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal p-0">{menus}</ul>
       </div>
-      <div className="navbar-end">
-        <a href="/" className="btn">
-          Get started
-        </a>
+      <div className="navbar-end text-black font-bold text-xl">
+        {user ? user.displayName : ""}
       </div>
     </div>
   );

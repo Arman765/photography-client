@@ -54,6 +54,7 @@ const Login = () => {
                 name="email"
                 placeholder="email"
                 className="input input-bordered"
+                required
               />
             </div>
             <div className="form-control">
@@ -65,6 +66,7 @@ const Login = () => {
                 name="password"
                 placeholder="password"
                 className="input input-bordered"
+                required
               />
               <label className="label">
                 <a href="/" className="label-text-alt link link-hover">
@@ -79,15 +81,15 @@ const Login = () => {
                 value="Login"
               ></input>
             </div>
-            <div className="form-control mt-6">
-              <input
-                onClick={handleGoogleSignIn}
-                className="btn btn-primary"
-                value="Google"
-              ></input>
-            </div>
           </form>
-
+          <div className="flex justify-center mb-3">
+            <button
+              onClick={handleGoogleSignIn}
+              className="btn btn-wide btn-primary "
+            >
+              Google
+            </button>
+          </div>
           <div className="text-center mb-5">
             New to{" "}
             <span className=" font-semibold text-green-500">Vision Maker</span>{" "}
