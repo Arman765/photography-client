@@ -4,6 +4,7 @@ import img2 from "../../../assets/carousal/kick.jpg";
 import img3 from "../../../assets/carousal/trophy.jpg";
 import img4 from "../../../assets/carousal/benz.jpeg";
 import CarousalItem from "./CarousalItem";
+import "./Carousal.css";
 
 const Carousal = () => {
   const carousalData = [
@@ -34,7 +35,7 @@ const Carousal = () => {
   ];
 
   return (
-    <div className="carousel w-full">
+    <div className="carousel w-full py-10 ">
       {/* <div id="slide1" className="carousel-item relative w-full">
         <img src={img1} className="w-full" alt="" />
         <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
