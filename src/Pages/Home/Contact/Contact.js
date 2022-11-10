@@ -15,7 +15,7 @@ const Contact = () => {
       phone,
     };
 
-    fetch("http://localhost:5000/contacts", {
+    fetch("https://sports-photographer-server-beta.vercel.app/contacts", {
       method: "POST",
       headers: {
         "content-type": "application/json",

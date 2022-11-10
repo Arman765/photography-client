@@ -8,13 +8,16 @@ const Edit = () => {
   const handleUpdate = (event) => {
     event.preventDefault();
 
-    fetch(`http://localhost:5000/reviews/${storedUser._id}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(user),
-    })
+    fetch(
+      `https://sports-photographer-server-beta.vercel.app/reviews/${storedUser._id}`,
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(user),
+      }
+    )
       .then((res) => res.json())
       .then((data) => console.log(data));
   };

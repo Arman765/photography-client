@@ -28,7 +28,7 @@ const Login = () => {
           email: user.email,
         };
 
-        fetch("http://localhost:5000/jwt", {
+        fetch("https://sports-photographer-server-beta.vercel.app/jwt", {
           method: "POST",
           headers: { "content-type": "application/json" },
           body: JSON.stringify(currentUser),

@@ -23,13 +23,16 @@ const AddSevice = () => {
       description,
     };
 
-    fetch("http://localhost:5000/services/allservices", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(newService),
-    })
+    fetch(
+      "https://sports-photographer-server-beta.vercel.app/services/allservices",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(newService),
+      }
+    )
       .then((res) => {
         res.json();
       })

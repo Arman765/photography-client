@@ -30,13 +30,18 @@ export const router = createBrowserRouter([
       {
         path: "/allservices",
         element: <AllServices></AllServices>,
-        loader: () => fetch("http://localhost:5000/services/allservices"),
+        loader: () =>
+          fetch(
+            "https://sports-photographer-server-beta.vercel.app/services/allservices"
+          ),
       },
       {
         path: "/serviceDetails/:id",
         element: <ServiceDetails></ServiceDetails>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/services/${params.id}`),
+          fetch(
+            `https://sports-photographer-server-beta.vercel.app/services/${params.id}`
+          ),
       },
       {
         path: "/reviews",
@@ -54,7 +59,9 @@ export const router = createBrowserRouter([
         path: "/edit/:id",
         element: <Edit></Edit>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/reviews/${params.id}`),
+          fetch(
+            `https://sports-photographer-server-beta.vercel.app/reviews/${params.id}`
+          ),
       },
       {
         path: "/addservice",
@@ -63,7 +70,10 @@ export const router = createBrowserRouter([
             <AddSevice></AddSevice>
           </PrivateRoutes>
         ),
-        loader: () => fetch("http://localhost:5000/services/allservices"),
+        loader: () =>
+          fetch(
+            "https://sports-photographer-server-beta.vercel.app/services/allservices"
+          ),
       },
     ],
   },

@@ -15,11 +15,14 @@ const Reviews = () => {
 
   useEffect(() => {
     // always user ase kina check korte hobe
-    fetch(`http://localhost:5000/reviews?email=${user?.email}`, {
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("vmtoken")}`,
-      },
-    })
+    fetch(
+      `https://sports-photographer-server-beta.vercel.app/reviews?email=${user?.email}`,
+      {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("vmtoken")}`,
+        },
+      }
+    )
       .then((res) => {
         if (res.status === 401 || res.status === 403) {
           logOut();
@@ -35,9 +38,12 @@ const Reviews = () => {
   const handleDelete = (id) => {
     const proceed = window.confirm("Are you sure to delete this item");
     if (proceed) {
-      fetch(`http://localhost:5000/reviews/${id}`, {
-        method: "DELETE",
-      })
+      fetch(
+        `https://sports-photographer-server-beta.vercel.app/reviews/${id}`,
+        {
+          method: "DELETE",
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
