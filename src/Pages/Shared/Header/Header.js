@@ -20,6 +20,7 @@ const Header = () => {
         {user ? (
           <>
             <Link to="/reviews">Reviews</Link>
+            <Link to="/addservice">Add Service</Link>
             <Link onClick={handleLogOut} className=" btn-outline btn-success">
               Log Out
             </Link>
@@ -68,7 +69,18 @@ const Header = () => {
         <ul className="menu menu-horizontal p-0">{menus}</ul>
       </div>
       <div className="navbar-end text-black font-bold text-xl">
-        {user ? user.displayName : ""}
+        {user ? (
+          <div className="flex">
+            <img
+              className="w-[40px] h-[30px] mr-2 rounded-full"
+              src={user.photoURL}
+              alt=""
+            ></img>
+            <p>{user.displayName}</p>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );

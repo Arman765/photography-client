@@ -1,6 +1,8 @@
 import React from "react";
+import toast from "react-hot-toast";
+import TailwindToaster from "./TailwindToaster";
 
-const ReviewsRow = ({ reviewEmail }) => {
+const ReviewsRow = ({ reviewEmail, handleDelete }) => {
   const {
     _id,
     service,
@@ -17,8 +19,14 @@ const ReviewsRow = ({ reviewEmail }) => {
     <tr>
       <th>
         <label>
-          {/* onClick={() => handleDelete(_id)} */}
-          <button className="btn btn-ghost">X</button>
+          <button
+            onClick={() => {
+              handleDelete(_id);
+            }}
+            className="btn btn-ghost"
+          >
+            X
+          </button>
         </label>
       </th>
       <td>
@@ -32,8 +40,11 @@ const ReviewsRow = ({ reviewEmail }) => {
           </div>
         </div>
       </td>
-
-      <td>{reviewEmail.message}</td>
+      <td>
+        <p className="text-xl">{serviceName}</p>
+        <p>Service No : {service}</p>
+      </td>
+      <td>{message}</td>
     </tr>
   );
 };
