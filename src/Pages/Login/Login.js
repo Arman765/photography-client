@@ -32,12 +32,12 @@ const Login = () => {
           method: "POST",
           headers: { "content-type": "application/json" },
           body: JSON.stringify(currentUser),
-        }).then((res) =>
-          res.json().then((data) => {
+        })
+          .then((res) => res.json())
+          .then((data) => {
             console.log(data);
             localStorage.setItem("vmtoken", data.token);
-          })
-        );
+          });
 
         alert("logged in Successfully");
         form.reset();
