@@ -16,11 +16,14 @@ const Header = () => {
     <>
       <li>
         <Link to="/">Home</Link>
-        <Link to="/">Blog</Link>
+        <Link to="/blog">Blog</Link>
         {user ? (
-          <Link onClick={handleLogOut} className=" btn-outline btn-success">
-            Log Out
-          </Link>
+          <>
+            <Link to="/reviews">Reviews</Link>
+            <Link onClick={handleLogOut} className=" btn-outline btn-success">
+              Log Out
+            </Link>
+          </>
         ) : (
           <Link className=" btn-outline btn-success" to="/login">
             Login
