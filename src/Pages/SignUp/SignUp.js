@@ -41,9 +41,8 @@ const SignUp = () => {
       <div className="hero-content flex-col lg:flex-row">
         <div className="text-center lg:text-left w-1/2">
           <p className="text-3xl mr-6 py-6">
-            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-            excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
-            a id nisi.
+            Login into the website to get all the features. There is something
+            catchy waiting for you.So to get it login into the website
           </p>
         </div>
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
