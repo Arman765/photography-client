@@ -13,6 +13,7 @@ const ReviewSection = ({ serviceDetails }) => {
     const message = form.message.value;
     const name = user?.displayName;
     const profilePic = user?.photoURL;
+    const date = new Date().getTime();
     const email = user?.email || "unregistered";
     const review = {
       service: _id,
@@ -22,6 +23,7 @@ const ReviewSection = ({ serviceDetails }) => {
       email,
       profilePic,
       message,
+      date,
     };
 
     fetch("http://localhost:5000/reviews", {
@@ -45,7 +47,7 @@ const ReviewSection = ({ serviceDetails }) => {
   };
 
   useEffect(() => {
-    fetch(`http://localhost:5000/reviews?service=${_id}`)
+    fetch(`http://localhost:5000/reviewsid?service=${_id}`)
       .then((res) => res.json())
       .then((data) => {
         setReviews(data);
@@ -61,7 +63,7 @@ const ReviewSection = ({ serviceDetails }) => {
               <div className="flex mb-10">
                 <div>
                   <img
-                    className="w-1/2 rounded-3xl"
+                    className="w-[60px] h-[50px] rounded-full"
                     src={user.photoURL}
                     alt=""
                   ></img>
@@ -99,9 +101,9 @@ const ReviewSection = ({ serviceDetails }) => {
           return (
             <div className="mb-10" key={review._id}>
               <div className="flex ">
-                <div>
+                <div className="mr-4">
                   <img
-                    className="w-1/2 rounded-3xl"
+                    className="w-[60px] h-[50px] rounded-full"
                     src={review.profilePic}
                     alt=""
                   ></img>

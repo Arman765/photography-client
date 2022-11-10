@@ -2,12 +2,14 @@ import { GoogleAuthProvider } from "firebase/auth";
 import React, { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Contexts/AuthContext/AuthProvider";
+import useTitle from "../../Hooks/Hooks/useTitle";
 
 const Login = () => {
   const { login, googleSignIn } = useContext(AuthContext);
   const googleProvider = new GoogleAuthProvider();
   const navigate = useNavigate();
   const location = useLocation();
+  useTitle("Login");
 
   const from = location.state?.from?.pathname || "/";
 
@@ -21,6 +23,22 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+
+        const currentUser = {
+          email: user.email,
+        };
+
+        fetch("http://localhost:5000/jwt", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify(currentUser),
+        }).then((res) =>
+          res.json().then((data) => {
+            console.log(data);
+            localStorage.setItem("vmtoken", data.token);
+          })
+        );
+
         alert("logged in Successfully");
         form.reset();
         navigate(from, { replace: true });

@@ -1,5 +1,6 @@
 import React from "react";
 import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
 import TailwindToaster from "./TailwindToaster";
 
 const ReviewsRow = ({ reviewEmail, handleDelete }) => {
@@ -45,6 +46,13 @@ const ReviewsRow = ({ reviewEmail, handleDelete }) => {
         <p>Service No : {service}</p>
       </td>
       <td>{message}</td>
+      <th>
+        <label>
+          <Link to={`/edit/${_id}`} className="btn btn-ghost">
+            Edit Review
+          </Link>
+        </label>
+      </th>
     </tr>
   );
 };

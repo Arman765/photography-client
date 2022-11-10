@@ -1,8 +1,10 @@
 import React from "react";
 import { useLoaderData } from "react-router-dom";
+import useTitle from "../Hooks/Hooks/useTitle";
 
 const AddSevice = () => {
   const services = useLoaderData();
+  useTitle("Add Service");
 
   const handleAddService = (event) => {
     event.preventDefault();

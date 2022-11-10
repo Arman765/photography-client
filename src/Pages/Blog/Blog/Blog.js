@@ -1,7 +1,9 @@
 import React from "react";
 import img1 from "../../../assets/blog/blog.jpg";
+import useTitle from "../../../Hooks/Hooks/useTitle";
 
 const Blog = () => {
+  useTitle("Blog");
   return (
     <div>
       <div className="hero mt-12">

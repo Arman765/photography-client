@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import useTitle from "../../../Hooks/Hooks/useTitle";
 import ServiceItem from "./ServiceItem";
 
 const Services = () => {
   const [services, setServices] = useState([]);
+
   useEffect(() => {
     fetch("http://localhost:5000/services")
       .then((res) => res.json())
@@ -13,7 +15,7 @@ const Services = () => {
   return (
     <div className="mb-10">
       <div className="text-center mb-10 mt-10">
-        <p className="text-2xl font-bold"> Services</p>
+        <p className="text-4xl font-bold"> Services</p>
         <p className="text-2xl font-bold">
           These are the services i give.As a professional i do my work very
           sicerely and professionally

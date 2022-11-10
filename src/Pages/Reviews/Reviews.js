@@ -1,20 +1,31 @@
 import React, { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../Contexts/AuthContext/AuthProvider";
+import useTitle from "../../Hooks/Hooks/useTitle";
 import ReviewsRow from "./ReviewsRow";
 import TailwindToaster from "./TailwindToaster";
 
 const Reviews = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
   // console.log(user);
   const [reviewsEmail, setReviewsEmail] = useState([]);
+  useTitle("Reviews");
 
   let toastVariable = 0;
 
   useEffect(() => {
     // always user ase kina check korte hobe
-    fetch(`http://localhost:5000/reviews?email=${user?.email}`)
-      .then((res) => res.json())
+    fetch(`http://localhost:5000/reviews?email=${user?.email}`, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("vmtoken")}`,
+      },
+    })
+      .then((res) => {
+        if (res.status === 401 || res.status === 403) {
+          logOut();
+        }
+        return res.json();
+      })
       .then((data) => {
         console.log(data);
         setReviewsEmail(data);
@@ -46,7 +57,7 @@ const Reviews = () => {
           No Reviews To Show
         </p>
       ) : (
-        <div className=" w-full">
+        <div className=" w-full mt-12 mb-12">
           <table className="table w-full">
             <thead>
               <tr>
@@ -58,7 +69,7 @@ const Reviews = () => {
               </tr>
             </thead>
             <tbody>
-              {reviewsEmail.map((reviewEmail) => (
+              {reviewsEmail?.map((reviewEmail) => (
                 <ReviewsRow
                   key={reviewEmail._id}
                   reviewEmail={reviewEmail}
